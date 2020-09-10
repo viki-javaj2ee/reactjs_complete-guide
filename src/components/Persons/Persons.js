@@ -19,25 +19,25 @@
 
 ////                  Converting it to class based component
 
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import MyPerson from './Person/Person';
 import { statement } from '@babel/template';
 
-class Persons extends PureComponent{
+class Persons extends Component{
 
     static getDerivedStateFromProps(props,state){
         console.log('[Persons.js] getDerivedStateFromProps');
         return statement;
     }
 
-    // shouldComponentUpdate(nextProps,nextState){
-    //     console.log('[Persons.js] shouldComponentUpdate');
-    //     if(nextProps.persons !== this.props.persons){
-    //         return true;
-    //     }else{
-    //         return false;
-    //     }
-    // }
+    shouldComponentUpdate(nextProps,nextState){
+        console.log('[Persons.js] shouldComponentUpdate');
+        if(nextProps.persons !== this.props.persons){
+            return true;
+        }else{
+            return false;
+        }
+    }
 
     getSnapshotBeforeUpdate(prevProps,prevState){
         console.log('[Persons.js] getSnapshotBeforeUpdate');
