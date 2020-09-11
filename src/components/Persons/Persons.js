@@ -23,6 +23,7 @@ import React, {Component} from 'react';
 import MyPerson from './Person/Person';
 import { statement } from '@babel/template';
 
+
 class Persons extends Component{
 
     static getDerivedStateFromProps(props,state){
@@ -56,17 +57,19 @@ class Persons extends Component{
 
     render(){
         console.log('[Persons.js] rendering...');
-        return this.props.persons.map((person,index) => {
-                return <MyPerson 
-                click={()=>this.props.clicked(index)} 
-                name={person.name} 
-                age={person.age} 
-                key={person.id}
-                changed={(event)=>this.props.changed(event,person.id)}
-                isAuth={this.props.isAuthenticated}/>
+        return (
+            this.props.persons.map((person,index) => {
+                    return <MyPerson 
+                    click={()=>this.props.clicked(index)} 
+                    name={person.name} 
+                    age={person.age} 
+                    key={person.id}
+                    changed={(event)=>this.props.changed(event,person.id)}
+                    isAuth={this.props.isAuthenticated}/>
         })
-    
-    }
+        
+    );
+}
 }
 
 export default Persons;  

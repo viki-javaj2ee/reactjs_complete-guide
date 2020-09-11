@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import AuthContext from '../../context/auth-context';
 
 const inlineStyle = {
     backgroundColor: 'white',
@@ -34,7 +35,9 @@ const Cockpit = (props) => {
         <div>
             <h1>{props.title}</h1>
             <button style={inlineStyle} onClick={props.clicked}>Toggle Persons</button>
-            <button style={inlineStyle} onClick={props.login}>Log in</button>
+            <AuthContext.Consumer>
+                {context => <button style={inlineStyle} onClick={context.login}>Log in</button>}
+            </AuthContext.Consumer>
         </div>
     )
 }
