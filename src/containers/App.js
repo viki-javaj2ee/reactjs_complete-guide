@@ -19,7 +19,8 @@ class App extends Component{
       {id: 'id3', name: 'Ganesh', age: 45}
     ],
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changeCounter: 0
   }
 
 nameChangedHandler = (event,id)=>{
@@ -35,7 +36,11 @@ nameChangedHandler = (event,id)=>{
   const persons = [...this.state.persons];
   persons[personIndex] = person;
 
-  this.setState({ persons: persons }
+  this.setState((prevState,props)=>{
+    return { 
+      persons: persons, 
+      changeCounter: prevState.changeCounter+1 }
+  }
   );
 }  
 
