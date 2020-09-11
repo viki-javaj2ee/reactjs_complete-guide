@@ -14,13 +14,14 @@ class App extends Component{
 
   state = {
     persons: [
-      {id: 'id1', name: 'Viki', age: '25'},
+      {id: 'id1', name: 'Viki', age: 25},
       {id: 'id2', name: 'Sai', age: 35},
       {id: 'id3', name: 'Ganesh', age: 45}
     ],
     showPersons: false,
     showCockpit: true,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
 nameChangedHandler = (event,id)=>{
@@ -74,6 +75,11 @@ componentDidUpdate(){
   console.log('[App.js] componentDidUpdate');
 }
 
+loginHandler = ()=>{
+  this.setState({authenticated: true});
+};
+
+
   render(){
     console.log('[App.js] render');
     let persons = null;
@@ -83,7 +89,8 @@ componentDidUpdate(){
             <Persons 
               persons={this.state.persons} 
               clicked={this.deletePersonHandler} 
-              changed={this.nameChangedHandler}/>
+              changed={this.nameChangedHandler}
+              isAuthenticated={this.state.authenticated}/>
         );
     }
 
@@ -97,12 +104,13 @@ componentDidUpdate(){
                         }>
             Remove Cockpit
         </button>
-        {this.state.showCockpit ? 
-        <Cockpit 
-          title={this.props.appTitle}
-          clicked={this.togglePersonsHandler}/>
-          :null}
-        {persons}
+          {this.state.showCockpit ? 
+          <Cockpit 
+            title={this.props.appTitle}
+            clicked={this.togglePersonsHandler}
+            login={this.loginHandler}/>
+            :null}
+          {persons}
       </Auxilliary>
     );
   

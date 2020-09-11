@@ -34,6 +34,7 @@ const Cockpit = (props) => {
         <div>
             <h1>{props.title}</h1>
             <button style={inlineStyle} onClick={props.clicked}>Toggle Persons</button>
+            <button style={inlineStyle} onClick={props.login}>Log in</button>
         </div>
     )
 }
